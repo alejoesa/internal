@@ -7,7 +7,8 @@ import {
 import { createUserSchema } from "../schemas/user.schema";
 
 export const getAllUsers = async (c: Context) => {
-  const users = await findAllUsers();
+  const filter = await c.req.query("email");
+  const users = await findAllUsers(filter || "");
   return c.json(users);
 };
 

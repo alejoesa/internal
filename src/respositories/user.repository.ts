@@ -2,7 +2,17 @@ import { password } from "bun";
 import { prisma } from "../lib/prisma";
 import { CreateUserDto, userResponseSchema } from "../schemas/user.schema";
 
-export const getUsersFromDB = async () => {
+export const getUsersFromDB = async (filter: string) => {
+  if (filter !== "") {
+    return await prisma.user.findMany({
+      where: {
+        email: filter,
+      },
+      omit: {
+        password: true,
+      },
+    });
+  }
   return await prisma.user.findMany({
     omit: {
       password: true,

@@ -7,8 +7,8 @@ import {
 } from "../respositories/user.repository";
 import { CreateUserDto } from "../schemas/user.schema";
 
-export const findAllUsers = async () => {
-  return await getUsersFromDB();
+export const findAllUsers = async (filter: string) => {
+  return await getUsersFromDB(filter);
 };
 
 export const findUniqueUser = async (id: string) => {
