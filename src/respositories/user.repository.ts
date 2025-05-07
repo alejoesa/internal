@@ -37,3 +37,17 @@ export const createUserInDb = async (data: CreateUserDto) => {
   });
   return user;
 };
+
+export const findUserByEmail = async (email: string) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      email: email,
+    },
+    omit: {
+      name: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+  return user;
+};

@@ -5,10 +5,11 @@ import {
   registerUser,
 } from "../controllers/user.controller";
 
-const userRoutes = new Hono();
+const privateUserRoutes = new Hono();
+privateUserRoutes.get("/", getAllUsers);
+privateUserRoutes.get("/:id", getUserById);
 
-userRoutes.get("/", getAllUsers);
-userRoutes.get("/:id", getUserById);
-userRoutes.post("/", registerUser);
+const publicUserRoutes = new Hono();
+publicUserRoutes.post("/", registerUser);
 
-export default userRoutes;
+export { publicUserRoutes, privateUserRoutes };

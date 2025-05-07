@@ -1,18 +1,17 @@
 meta {
-  name: register user
+  name: login
   type: http
-  seq: 2
+  seq: 1
 }
 
 post {
-  url: http://localhost:3000/users
+  url: http://localhost:3000/login
   body: json
   auth: inherit
 }
 
 body:json {
   {
-    "name": "Alejandro Escobar",
     "email": "lala5@lala.com",
     "password": "123456"
   }
