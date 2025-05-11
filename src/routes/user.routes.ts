@@ -4,12 +4,12 @@ import {
   getUserById,
   registerUser,
 } from "../controllers/user.controller";
+import { authMiddleware } from "../middleware/auth.middleware";
 
-const privateUserRoutes = new Hono();
-privateUserRoutes.get("/", getAllUsers);
-privateUserRoutes.get("/:id", getUserById);
+const userRoutes = new Hono();
+userRoutes.get("/", authMiddleware, getAllUsers);
+userRoutes.get("/:id", authMiddleware, getUserById);
 
-const publicUserRoutes = new Hono();
-publicUserRoutes.post("/", registerUser);
+userRoutes.post("/", registerUser);
 
-export { publicUserRoutes, privateUserRoutes };
+export default userRoutes;

@@ -1,2 +1,36 @@
-# deps
+# Node/Bun
 node_modules/
+bun.lockb
+
+# Compiled output
+dist/
+build/
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Env files
+.env
+.env.*.local
+
+# Editor settings
+.vscode/
+.idea/
+*.swp
+
+# Test output
+coverage/
+*.lcov
+
+# Bun cache
+.bun/
+
+# Optional: if you're using SQLite
+*.sqlite
+*.sqlite-journal
