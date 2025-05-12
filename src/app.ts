@@ -1,6 +1,5 @@
 import { Hono } from "hono";
 import userRoutes from "./routes/user.routes";
-import protectedRoutes from "./routes/protected.routes";
 import authRoutes from "./routes/auth.routes";
 
 const app = new Hono();
