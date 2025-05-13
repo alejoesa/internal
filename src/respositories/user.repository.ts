@@ -1,6 +1,6 @@
 import { password } from "bun";
 import { prisma } from "../lib/prisma";
-import { CreateUserDto, userResponseSchema } from "../schemas/user.schema";
+import { CreateUserDto } from "../schemas/user.schema";
 
 export const getUsersFromDB = async (filter: string) => {
   if (filter !== "") {

@@ -8,10 +8,24 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid()) // UUID como id principal
-  name      String?
-  email     String?  @unique
-  password  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         String   @id @default(uuid())
+  name       String?
+  email      String?  @unique
+  password   String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  isAdmin    Boolean @default(false)
+
+  tasks      Task[]   // 👈 Relación 1:N
 }
+
+model Task {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  
+  userOwnerId String
+  userOwner   User     @relation(fields: [userOwnerId], references: [id]) // 👈 Relación
+}
+

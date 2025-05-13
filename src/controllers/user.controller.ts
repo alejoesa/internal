@@ -5,6 +5,7 @@ import {
   findUniqueUser,
 } from "../services/user.service";
 import { createUserSchema } from "../schemas/user.schema";
+import { generateToken } from "../lib/jwt";
 
 export const getAllUsers = async (c: Context) => {
   const filter = await c.req.query("email");
@@ -22,7 +23,11 @@ export const registerUser = async (c: Context) => {
     const body = await c.req.json();
     const validatedData = createUserSchema.parse(body);
     const newUser = await createUser(validatedData);
-    return c.json(newUser, 201);
+    const token = generateToken({
+      id: newUser.id,
+      email: newUser.email,
+    });
+    return c.json({ newUser, token }, 201);
   } catch (error) {
     if (error instanceof Error) {
       console.log(error);
