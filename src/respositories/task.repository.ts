@@ -1,4 +1,5 @@
 import { prisma } from "../lib/prisma";
+import { createTaskDto } from "../schemas/task.schema";
 
 export const getTaskFromDB = async (filter: string) => {
   const isAdmin = await prisma.user.findFirst({
@@ -32,4 +33,10 @@ export const getTaskFromDB = async (filter: string) => {
     });
   }
   return await prisma.task.findMany();
+};
+
+export const createTaskinDb = async (data: createTaskDto) => {
+  const task = await prisma.task.create({
+    data,
+  });
 };
